@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         BFC Cost Calculator
-// @namespace    moebuff.org
+// @namespace    https://osu.ppy.sh/u/6230892
 // @version      2.4.3
 // @description  基于pp+的osu炸翔杯cost计算器
 // @author       muto
@@ -944,7 +944,7 @@
             tr.append("<td>{0}</td>".format(c));
         });
 
-        $(".ranking-header").append("<th>Cost v2</th>");// add thead
+        $(".ranking-header").append("<th>cv2</th>");// add thead
     });
 
     // *://osu.ppy.sh/*
