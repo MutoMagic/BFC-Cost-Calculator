@@ -774,7 +774,7 @@
             });
         },
 
-        // 数据工厂，用于从 pp+/u 界面中获取 cost
+        // 数据工厂，用于从 pp+/u 页面中获取 cost
         dataFactory: function () {
             const perform = {};
 
