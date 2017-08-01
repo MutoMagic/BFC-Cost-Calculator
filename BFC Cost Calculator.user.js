@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BFC Cost Calculator
 // @namespace    https://osu.ppy.sh/u/6230892
-// @version      2.4.3
+// @version      2.4.4
 // @description  基于pp+的osu炸翔杯cost计算器
 // @author       muto
 // @match        *://syrin.me/pp+/u/*
@@ -944,7 +944,7 @@
             tr.append("<td>{0}</td>".format(c));
         });
 
-        $(".ranking-header").append("<th>cv2</th>");// add thead
+        $(".ranking-header").append("<th>Cost</th>");// add thead
     });
 
     // *://osu.ppy.sh/*
@@ -1011,7 +1011,7 @@
 
                 }).then(data => {
                     const c = $(data).dataFactory().log(a.text()).toFixed();
-                    a.append(" | Cost v2: {0}".format(c));
+                    a.append(" | Cost: {0}".format(c));
                 });
             });
 

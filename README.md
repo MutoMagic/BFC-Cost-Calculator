@@ -1,6 +1,9 @@
 # BFC-Cost-Calculator
 用于osu炸翔杯（比赛）的cost计算器。
 
+> 从 2.4.3 开始，项目已从 Greasy Fork 迁移到 Github，由于更换了 namespace 因此
+安装过老版本的用户，在自动更新后可能会出现错误，建议手动更新并将其删除。
+
 ### 什么是Cost？
 Cost是每位队员自身的价值，与选手实力相关，在上场时必须支付与自身Cost等值的体力。
 
