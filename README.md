@@ -18,7 +18,7 @@ Cost是每位队员自身的价值，与选手实力相关，在上场时必须�
 - 2.4.4 支持 Greasy Fork 同步更新
 
 ## 如何安装
-要使用脚本，首先需要安装一个[用户脚本管理器](http://tampermonkey.net/)（油候）。
+要使用脚本，首先需要安装一个[油候](http://tampermonkey.net/)（用户脚本管理器）。
 
 点击 [这里](https://github.com/MutoMagic/BFC-Cost-Calculator/raw/master/BFC%20Cost%20Calculator.user.js) 安装
 
