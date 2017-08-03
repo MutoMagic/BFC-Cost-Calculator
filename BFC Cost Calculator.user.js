@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BFC Cost Calculator
 // @namespace    https://osu.ppy.sh/u/6230892
-// @version      2.4.4
+// @version      2.4.5
 // @description  基于pp+的osu炸翔杯cost计算器
 // @author       muto
 // @match        *://syrin.me/pp+/u/*
@@ -951,9 +951,10 @@
     //---------------------------------------------------------------------------------------------
 
     "*://osu.ppy.sh/u/*".$match(function () {
+        const path = "/u/" + userId;// 页面自带 window.userId
         $.http({
             method: "GET",
-            url: "https://syrin.me/pp+" + window.location.pathname,
+            url: "https://syrin.me/pp+" + (userId ? path : window.location.pathname)
         }).then(data => {
             $(".profile-username").after(
                 "Cost v2: " + $(data).dataFactory().log().toFixed()
