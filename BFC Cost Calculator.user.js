@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BFC Cost Calculator
 // @namespace    https://osu.ppy.sh/u/6230892
-// @version      2.4.5
+// @version      2.4.6
 // @description  基于pp+的osu炸翔杯cost计算器
 // @author       muto
 // @match        *://syrin.me/pp+/u/*
@@ -956,9 +956,32 @@
             method: "GET",
             url: "https://syrin.me/pp+" + (userId ? path : window.location.pathname)
         }).then(data => {
-            $(".profile-username").after(
-                "Cost v2: " + $(data).dataFactory().log().toFixed()
-            );
+            // $(".profile-username").after(
+            //     "Cost v2: " + $(data).dataFactory().log().toFixed()
+            // );
+
+            // SE比赛用 - 分组
+            let c = $(data).dataFactory().log().toFixed();
+            if (c >= 7.6) {
+                c = 11;
+            } else if (c >= 6) {
+                c = 9;
+            } else if (c >= 5.4) {
+                c = 7;
+            } else if (c >= 4.5) {
+                c = 6;
+            } else if (c >= 3.5) {
+                c = 5;
+            } else if (c >= 3) {
+                c = 4;
+            } else if (c >= 2.5) {
+                c = 3;
+            } else if (c >= 2) {
+                c = 2;
+            } else {
+                c = 1;
+            }
+            $(".profile-username").after("Cost SE Group: " + c);
         });
 
         // 彩蛋 (๑•̀ㅂ•́)و✧
