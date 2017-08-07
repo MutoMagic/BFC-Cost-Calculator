@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BFC Cost Calculator
 // @namespace    https://osu.ppy.sh/u/6230892
-// @version      2.4.6
+// @version      2.4.7
 // @description  基于pp+的osu炸翔杯cost计算器
 // @author       muto
 // @match        *://syrin.me/pp+/u/*
@@ -846,6 +846,7 @@
             // setter
             if (arguments.length === 2) {
                 that[key] = value;
+                return value;
             }
             return that;
         };
