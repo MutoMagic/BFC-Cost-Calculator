@@ -967,11 +967,11 @@
                 c = 11;
             } else if (c >= 6) {
                 c = 9;
-            } else if (c >= 5.4) {
+            } else if (c >= 5.6) {
                 c = 7;
             } else if (c >= 4.5) {
                 c = 6;
-            } else if (c >= 3.5) {
+            } else if (c >= 3.8) {
                 c = 5;
             } else if (c >= 3) {
                 c = 4;
