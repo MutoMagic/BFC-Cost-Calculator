@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BFC Cost Calculator
 // @namespace    https://osu.ppy.sh/u/6230892
-// @version      2.4.9
+// @version      2.4.10
 // @description  基于pp+的osu炸翔杯cost计算器
 // @author       muto
 // @match        *://syrin.me/pp+/u/*
@@ -962,7 +962,7 @@
             // );
 
             // SE比赛用 - 分组
-            let c = $(data).dataFactory().log();
+            let c = $(data).dataFactory().log().toFixed();
             if (c >= 7.6) {
                 c = 11;
             } else if (c >= 6) {
