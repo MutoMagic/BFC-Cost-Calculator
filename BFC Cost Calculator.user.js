@@ -962,7 +962,7 @@
             // );
 
             // SE比赛用 - 分组
-            let c = $(data).dataFactory().log().toFixed();
+            let c = $(data).dataFactory().log();
             if (c >= 7.6) {
                 c = 11;
             } else if (c >= 6) {
