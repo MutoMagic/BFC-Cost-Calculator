@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BFC Cost Calculator
 // @namespace    https://osu.ppy.sh/u/6230892
-// @version      2.4.10
+// @version      2.4.11
 // @description  基于pp+的osu炸翔杯cost计算器
 // @author       muto
 // @match        *://syrin.me/pp+/u/*
@@ -745,11 +745,6 @@
         return log(this) || this;
     };
 
-    // 支持负数的指数运算
-    function pow(x, y) {
-        return x < 0 ? -Math.pow(-x, y) : Math.pow(x, y);
-    }
-
     function async(callback, delay) {
         return new Promise((resolve, reject) => {
             // 模拟异步操作
@@ -865,18 +860,19 @@
     //---------------------------------------------------------------------------------------------
 
     function Aim(p) {
-        this.jump = pow(p.Jump / 1200 - 0.5, 0.8);
-        this.flow = pow(1 + p.Flow / 3000, 0.8);
-        this.precision = pow(1 + p.Precision / 3000, 0.8);
+        let j = p.Jump / 1200 - 0.5;
+        this.jump = Math.pow(j < 0 ? 0 : j, 0.8);// 最小值为 0
+        this.flow = Math.pow(1 + p.Flow / 3000, 0.8);
+        this.precision = Math.pow(1 + p.Precision / 3000, 0.8);
 
-        const r = this.jump * this.flow * this.precision;
+        const r = (this.jump || 1) * this.flow * this.precision;
         return $.extend(Object(r), this);
     }
 
     function Cost(p) {
-        this.aim = new Aim(p);
+        this.aim = new Aim(p);// Number
         this.spd = (p.Speed + p.Stamina) / 1500 - 0.5;
-        this.acc = pow(1 + p.Accuracy / 5000, 0.8);
+        this.acc = Math.pow(1 + p.Accuracy / 5000, 0.8);
 
         this["[[pv]]"] = (this.aim + this.spd * 0.8) * this.acc / 1.4;// primitive value
     }
