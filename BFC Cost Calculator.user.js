@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         BFC Cost Calculator
 // @namespace    https://osu.ppy.sh/u/6230892
-// @version      2.5.0
+// @version      2.5.1
 // @description  基于pp+的osu炸翔杯cost计算器
 // @author       muto
 // @match        *://syrin.me/pp+/u/*
 // @match        *://osu.ppy.sh/u/*
 // @run-at       document-end
 // @require      https://code.jquery.com/jquery-3.2.1.min.js
-// @require      http://requirejs.org/docs/release/2.3.5/minified/require.js
+// @require      https://cdn.rawgit.com/requirejs/requirejs/2.3.5/require.js
 // @grant        unsafeWindow
 // @grant        GM_xmlhttpRequest
 // @connect      syrin.me
