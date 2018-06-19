@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         BFC Cost Calculator
-// @namespace    https://osu.ppy.sh/u/6230892
-// @version      2.5.2
+// @namespace    https://osu.ppy.sh/users/6230892
+// @version      3.0.0
 // @description  基于pp+的osu炸翔杯cost计算器
 // @author       muto
 // @match        *://syrin.me/pp+/u/*
 // @match        *://osu.ppy.sh/u/*
+// @match        *://osu.ppy.sh/users/*
 // @run-at       document-end
 // @require      https://code.jquery.com/jquery-3.2.1.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js
@@ -24,8 +25,8 @@ require.config({
     paths: {
         text: "requirejs/text/master/text",
 
-        "glob-to-regexp": "fitzgen/glob-to-regexp/master/index",
-        mathjs: "josdejong/mathjs/master/dist/math.min"
+        "glob-to-regexp": "fitzgen/glob-to-regexp/0.4.0/index",
+        mathjs: "josdejong/mathjs/v4.4.2/dist/math.min"
     },
 
     config: {
@@ -52,7 +53,7 @@ require(["node!glob-to-regexp", "mathjs"], function (globToRegExp, math) {
     String.prototype.glob = function (callback) {
         return globToRegExp(this).test(window.location.href)
             ? async(callback)
-            : _Promise.reject(`glob ${this} not matched`);
+        : _Promise.reject(`glob ${this} not matched`);
     };
 
     String.prototype.toInt = function () {
@@ -86,11 +87,11 @@ require(["node!glob-to-regexp", "mathjs"], function (globToRegExp, math) {
                 // The provided this value is ignored, while prepended arguments are
                 // provided to the emulated function.
                 return fToBind.apply(this instanceof fNOP
-                    ? this
-                    : thisArg,
-                    // 获取调用时(fBound)的传参.bind 返回的函数入参往往是这么传递的
-                    aArgs.concat(Array.prototype.slice.call(arguments))
-                );
+                                     ? this
+                                     : thisArg,
+                                     // 获取调用时(fBound)的传参.bind 返回的函数入参往往是这么传递的
+                                     aArgs.concat(Array.prototype.slice.call(arguments))
+                                    );
             };
 
         // 维护原型关系
@@ -152,7 +153,7 @@ require(["node!glob-to-regexp", "mathjs"], function (globToRegExp, math) {
             if (!$.isNumeric(index)) {
                 index = $.isFunction(index)
                     ? array.findIndex(index, count)
-                    : array.indexOf(index, count);
+                : array.indexOf(index, count);
             }
             count = $.isNumeric(count) ? count : 1;// count || 1 不支持 count = 0
             return array.splice(index, index > -1 ? count : 0);
@@ -428,8 +429,8 @@ require(["node!glob-to-regexp", "mathjs"], function (globToRegExp, math) {
             .text("Cost v2:")
             .next()
             .text(
-                $(document).cost() + " 円/次"
-            );
+            $(document).cost() + " 円/次"
+        );
     });
 
     "*://osu.ppy.sh/u/*".glob(_ => {
@@ -444,7 +445,8 @@ require(["node!glob-to-regexp", "mathjs"], function (globToRegExp, math) {
         // ================================================================
         // 71014486   〖osu!播放器〗音游电子狂欢•精整更新曲库
         // 616677063  『东方』幻想写景，来首纯音乐吧♡
-        let id = $.randomArray([71014486, 616677063]);
+        // 884190460   日推Collection
+        let id = $.randomArray([71014486, 616677063, 884190460]);
         $(".footer_columns").append("<iframe id='player'></iframe>");
         $("#player").attr({
             frameborder: "no",
@@ -457,6 +459,16 @@ require(["node!glob-to-regexp", "mathjs"], function (globToRegExp, math) {
             // type 播放器类型 0.歌单 2.单曲
             // auto 自动播放 1.true 0.false
             src: `//music.163.com/outchain/player?type=0&id=${id}&auto=0&height=430`
+        });
+    });
+
+    "*://osu.ppy.sh/users/*".glob(_ => {
+        let userId = location.pathname.split("/");
+        $.http({
+            method: "GET",
+            url: `https://syrin.me/pp+/u/${userId[2]}`
+        }).then(data => {
+            $(".profile-header-extra__rank-box:last").append(` ${$(data).cost()}cost`);
         });
     });
 
