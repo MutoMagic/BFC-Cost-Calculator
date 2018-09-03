@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BFC Cost Calculator
 // @namespace    https://osu.ppy.sh/users/6230892
-// @version      3.1.0
+// @version      3.2.0
 // @description  基于pp+的osu炸翔杯cost计算器
 // @author       muto
 // @match        *://syrin.me/pp+/u/*
@@ -20,7 +20,7 @@ unsafeWindow.require = require;
 unsafeWindow.define = define;
 
 require.config({
-    baseUrl: "https://cdn.rawgit.com/",
+    baseUrl: "https://gitcdn.xyz/repo",
 
     paths: {
         text: "requirejs/text/master/text",
@@ -272,7 +272,7 @@ require(["node!glob-to-regexp", "mathjs"], function (globToRegExp, math) {
                     this.status = status;
                     this.data = data;
                     b.topic(status).publish(data);// 2.2.6
-                    
+
                     // 遇到 rejected 就将问题打印到控制台
                     status === 'rejected' && console.warn(data);
                 }
